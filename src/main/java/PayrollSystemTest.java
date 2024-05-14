@@ -1,19 +1,17 @@
-//Programa de teste da hierarquia Employee
-
 public class PayrollSystemTest {
 
   public static void main(String[] args) {
 
     // cria objetos de subclasse
-    SalariedEmployee salariedEmployee = new SalariedEmployee("John", "Smith", "111-11-1111", 800.00);
-    HourlyEmployee hourlyEmployee = new HourlyEmployee("Karen", "Price", "222-22-2222", 16.75, 40);
-    CommissionEmployee commissionEmployee = new CommissionEmployee("Sue", "Jones", "333-33-3333", 10000, .06);
-    BasePlusCommissionEmployee basePlusCommissionEmployee = new BasePlusCommissionEmployee("Bob", "Lewis",
-        "444-44-4444", 5000, .04, 300);
+    SalariedEmployee salariedEmployee = new SalariedEmployee("Arthur", "Lima", "191-17-1000", 3500.00);
+    HourlyEmployee hourlyEmployee = new HourlyEmployee("Isabel", "Lima", "121-22-2345", 30.75, 40);
+    CommissionEmployee commissionEmployee = new CommissionEmployee("Guilherme", "Sampaio", "333-33-3333", 10000, .08);
+    BasePlusCommissionEmployee basePlusCommissionEmployee = new BasePlusCommissionEmployee("Jonas", "Sampaio",
+        "444-44-4444", 5000, .06, 1200);
 
     System.out.println("Funcionários processados individualmente:");
-
-    System.out.printf("%n%s%n%s: R$%,.2f%n%n", salariedEmployee, "salário auferido", salariedEmployee.earnings());
+    System.out.println();
+    System.out.printf("%s%n%s: R$%,.2f%n%n", salariedEmployee, "salário auferido", salariedEmployee.earnings());
     System.out.printf("%s%n%s: R$%,.2f%n%n", hourlyEmployee, "salário auferido", hourlyEmployee.earnings());
     System.out.printf("%s%n%s: R$%,.2f%n%n", commissionEmployee, "salário auferido", commissionEmployee.earnings());
     System.out.printf("%s%n%s: R$%,.2f%n%n", basePlusCommissionEmployee, "salário auferido",
@@ -41,13 +39,28 @@ public class PayrollSystemTest {
         BasePlusCommissionEmployee employee = (BasePlusCommissionEmployee) currentEmployee;
 
         employee.setBaseSalary(1.10 * employee.getBaseSalary());
-        System.out.printf("Novo salário base com aumento de 10% é: R$%,.2f%n", employee.getBaseSalary());
+        System.out.printf("Novo salário base com aumento de 10%% é: R$%,.2f%n", employee.getBaseSalary());
       } // fim do if
-      System.out.printf("salário auferido R$%,.2f%n%n", currentEmployee.earnings());
+      System.out.printf("salário auferido: R$%,.2f%n%n", currentEmployee.earnings());
     } // for final
-
-    // obtém o nome do tipo de cada objeto no array employees
-    for (int j = 0; j < employees.length; j++)
-      System.out.printf("Funcionário %d registrado como %s%n", j, employees[j].getClass().getName());
+    System.out.println("-----------------------------------------------------");
+    System.out.println();
+    
+/****** obtém o nome do tipo de cada objeto no array employees e para cada iteração(if/else), o tipo de cada funcionário é obtido ********/
+    for (int j = 0; j < employees.length; j++) {
+        String tipoFuncionario = "";
+        if (employees[j] instanceof SalariedEmployee) {
+            tipoFuncionario = "Funcionário Assalariado";
+        } else if (employees[j] instanceof HourlyEmployee) {
+            tipoFuncionario = "Funcionário Horista";
+        } else if (employees[j] instanceof BasePlusCommissionEmployee) {
+            tipoFuncionario = "Funcionário Comissionado de salário-base";
+        } else if (employees[j] instanceof CommissionEmployee) {
+            tipoFuncionario = "Funcionário Comissionado";
+        } else {
+            tipoFuncionario = "Funcionário";
+        }
+        System.out.printf("Funcionário %d registrado como %s%n", j, tipoFuncionario);
+    }
   } // fim de main
-} // fim da classe PayrollSystemTest
+} // fim da classe de teste do Sistema de folha de Pagamento (Main)
